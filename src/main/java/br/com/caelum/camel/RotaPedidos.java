@@ -12,10 +12,10 @@ public class RotaPedidos {
 			@Override
 			public void configure() throws Exception {
 				from("file:pedidos?delay=5s&noop=true")
-						.filter().xpath("/pedido/itens/item/formato[text()='IMPRESSO']")
+						.split().xpath("/pedido/itens/item")
+						.filter().xpath("/item/formato[text()='IMPRESSO']")
 						.marshal().xmljson()
 						.log("${body}")
-						.log("exchange pattern: " + "${exchange.pattern}")
 						.setHeader("CamelFileName" , simple("${file:name.noext}.json"))
 				.to("file:saida");
 			}
