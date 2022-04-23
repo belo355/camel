@@ -14,6 +14,11 @@ public class RotaPedidos {
             @Override
             public void configure() throws Exception {
                 from("file:pedidos?delay=5s&noop=true")
+                        .to("direct:http-rest")
+                        .to("direct:soap");
+
+                from("direct:http-rest")
+                        .routeId("http-rest")
                         .setProperty("pedidoId", xpath("/pedido/id/text()"))
                         .setProperty("clienteId", xpath("/pedido/pagamento/email-titular/text()"))
                         .split().xpath("/pedido/itens/item")
@@ -22,12 +27,12 @@ public class RotaPedidos {
                         .marshal().xmljson()
                         .log("${body}")
                         .setHeader(Exchange.HTTP_METHOD, HttpMethods.GET)
-                        .setHeader(Exchange.HTTP_PATH, simple(
-                                "clienteId=${property.clienteId}" +
-                                        "&pedidoId=${property.pedidoId}" +
-                                        "&ebookId=${property.ebookId}"
-                        ))
-                        .to("http4://localhost:8081/ebook");
+                        .setHeader(Exchange.HTTP_QUERY, simple("clienteId=${property.clienteId}&pedidoId=${property.pedidoId}&ebookId=${property.ebookId}"))
+                        .to("http4://localhost:8081/ebook?");
+                from("direct:soap")
+                        .routeId("mock-router-soap")
+                        .to("mock:soap");
+
             }
         });
 

@@ -1,2 +1,8 @@
-br/com/caelum/camel/RotaPedidos.class
+br/com/caelum/camel/Desafio1.class
+br/com/caelum/camel/domain/StatusEnum.class
+br/com/caelum/camel/domain/Pedido.class
+br/com/caelum/camel/domain/Pagamento.class
 br/com/caelum/camel/RotaPedidos$1.class
+br/com/caelum/camel/RotaPedidos.class
+br/com/caelum/camel/domain/Item.class
+br/com/caelum/camel/domain/Livro.class
