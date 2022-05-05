@@ -3,17 +3,12 @@ b
 2src/main/java/br/com/caelum/camel/domain/Item.java,6/f/6ff9f973c07a3533e1b35f2f11fe2bda0c50de5d
 c
 3src/main/java/br/com/caelum/camel/domain/Livro.java,f/9/f9c12e3bc7a8573162b39ab60fbb9c6799492bc4
-g
-7src/main/java/br/com/caelum/camel/domain/Pagamento.java,3/0/303731a88fd5d2f7091cce27229b405c4bf53e3a
 h
 8src/main/java/br/com/caelum/camel/domain/StatusEnum.java,e/1/e1ee3382733d9fe2ec51e1221b0539e3758df642
 d
 4src/main/java/br/com/caelum/camel/domain/Pedido.java,8/1/81e3c0f7b173941089a7579f58ebdd75fed0a7ba
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 H
 pedidos-old/2_pedido.xml,a/1/a1352975677cb922ab46d2b9d5e22145f3e89e37
 H

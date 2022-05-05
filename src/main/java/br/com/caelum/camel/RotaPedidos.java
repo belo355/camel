@@ -14,8 +14,10 @@ public class RotaPedidos {
             @Override
             public void configure() throws Exception {
                 from("file:pedidos?delay=5s&noop=true")
-                        .to("direct:http-rest")
-                        .to("direct:soap");
+                        .routeId("route-principal-pedidos")
+                        .multicast()
+                            .to("direct:http-rest")
+                            .to("direct:soap");
 
                 from("direct:http-rest")
                         .routeId("http-rest")
@@ -30,7 +32,7 @@ public class RotaPedidos {
                         .setHeader(Exchange.HTTP_QUERY, simple("clienteId=${property.clienteId}&pedidoId=${property.pedidoId}&ebookId=${property.ebookId}"))
                         .to("http4://localhost:8081/ebook?");
                 from("direct:soap")
-                        .routeId("mock-router-soap")
+                        .routeId("soap")
                         .to("mock:soap");
 
             }
